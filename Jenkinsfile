@@ -14,9 +14,9 @@ node {
             def j = findJenkinsfileToRun(sout.split())
 
             if (j.toString() == "${pwd()}/Jenkinsfile") {
-                println("Building the whole world")
+                println("Building everything")
 
-                load "Jenkinsfile-build-the-world"
+                load "Jenkinsfile-all"
 
             } else {
                 println("Building ${j.toString()}")
