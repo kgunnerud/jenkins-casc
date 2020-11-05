@@ -9,7 +9,7 @@ node {
 
     try {
         stage('Determine Jenkinsfile to build') {
-            def sout = sh(returnStdout: true, script: 'git diff --name-only origin/master...HEAD')
+            def sout = sh(returnStdout: true, script: 'git diff --name-only origin/main...HEAD')
 
             def j = findJenkinsfileToRun(sout.split())
 
@@ -34,7 +34,7 @@ node {
 
 @NonCPS
 def createFilePath(def path) {
-    if (env['NODE_NAME'].equals("master")) {
+    if (env['NODE_NAME'].equals("main")) {
         File localPath = new File(path)
         return new hudson.FilePath(localPath);
     } else {
