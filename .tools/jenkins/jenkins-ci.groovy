@@ -3,8 +3,8 @@ package ci
 import java.util.stream.Collectors
 
 static void main(String[] args) {
-    def changed = findChangedPaths("apps/derp/dorp\nlibs/d1/src\n.dockerFile\napps/derp/dorp\n");
-    println changed.stream().map(e -> e.toString()).collect(Collectors.joining("\n"))
+    //def changed = findChangedPaths("apps/derp/dorp\nlibs/d1/src\n.dockerFile\napps/derp/dorp\n");
+    //println changed.stream().map(e -> e.toString()).collect(Collectors.joining("\n"))
 }
 
 static List<ChangedPath> findChangedPaths(String gitChanges) {
