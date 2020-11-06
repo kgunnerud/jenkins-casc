@@ -1,16 +1,29 @@
-pipeline {
-   agent {
-        docker {
-            image 'docker.io/library/maven:3.6.1-jdk-8'
+node {
+    def scmvars = checkout(scm)
+    def commitHash = scmvars.GIT_COMMIT
+    def mavenOptions = "-Drevision=${commitHash}"
+    env.MAVEN_OPTS="${mavenOptions}"
+
+    try {
+        stage('Determine Jenkinsfile to build') {
+
+
+        }
+    } catch (err) {
+        println("ERR: ${err}")
+        currentBuild.result = 'FAILED'
+    }
+}
+
+def findJenkinsfiles() {
+    def sout = sh(returnStdout: true, script: 'git diff --name-only HEAD^^')
+    def splitted = sout.split("\n")
+
+    def foundJenkinsFiles = []
+    for (split in splitted) {
+        if (split.contains("apps/")) {
+            println(in)
         }
     }
-
-    stages {
-        stage('Build all') {
-            steps {
-                sh 'mvn clean install'
-            }
-        }
-
-    }
+    return foundJenkinsFiles;
 }
