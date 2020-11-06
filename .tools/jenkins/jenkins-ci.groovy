@@ -9,12 +9,10 @@ static void main(String[] args) {
 
 static List<ChangedPath> findChangedPaths(String gitChanges) {
     def uniques = new HashSet();
-    return (gitChanges.split("\n") as List).stream()
-            .map({e -> toChangedPath(e)})
-            .filter({e -> e != null})
-            .filter({e -> !uniques.contains(e.name)})
-            .peek({e -> uniques.add(e.name)})
-            .collect(Collectors.toList())
+    return (gitChanges.split("\n") as List)
+            .collect {toChangedPath(it) }
+            .findAll {it != null }
+            .findAll {uniques.add(it.name) }
 }
 
 private static ChangedPath toChangedPath(String input) {
@@ -46,4 +44,3 @@ enum Type {
     LIB
 }
 
-return this
