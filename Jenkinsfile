@@ -14,8 +14,10 @@ node {
 
             def ci = load "${pwd()}/.tools/jenkins/jenkins-ci.groovy"
 
-            def changed = ci.findChangedPaths(changedFiles);
-            println "${changed}"
+            def changedPaths = ci.findChangedPaths(changedFiles);
+            for(changed in changedPaths) {
+                load changed.path + "/Jenkinsfile"
+            }
         }
         currentBuild.result = 'SUCCESS'
     } catch (err) {
