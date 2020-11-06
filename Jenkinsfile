@@ -6,7 +6,7 @@ node {
 
     try {
         stage('Determine Jenkinsfile to build') {
-            load "https://raw.githubusercontent.com/kgunnerud/jenkins-casc/main/.tools/jenkins/jenkins-ci.groovy"
+            load ".tools/jenkins/jenkins-ci.groovy"
             def changedFiles = sh(returnStdout: true, script: 'git diff --name-only HEAD^^')
             def changed = findChangedFiles(changedFiles);
             println changed
