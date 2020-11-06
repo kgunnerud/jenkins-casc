@@ -12,7 +12,6 @@ node {
             def path = new hudson.FilePath(file)
             println path.list()
 
-
             def ci = load "${pwd()}/.tools/jenkins/jenkins-ci.groovy"
 
             def changed = ci.findChangedPaths(changedFiles);
