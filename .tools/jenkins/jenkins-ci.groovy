@@ -44,3 +44,4 @@ enum Type {
     LIB
 }
 
+return this;
