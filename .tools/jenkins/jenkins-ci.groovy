@@ -16,6 +16,7 @@ static List<ChangedPath> findChangedPaths(String gitChanges) {
             .findAll {uniques.add(it.name) }
 }
 
+@NonCPS
 private static ChangedPath toChangedPath(String input) {
     def matcher = input =~ "^(apps|libs)/(?<name>.*?)/.*"
     if (matcher.matches()) {
