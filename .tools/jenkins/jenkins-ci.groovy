@@ -45,3 +45,5 @@ enum Type {
     APP,
     LIB
 }
+
+return this

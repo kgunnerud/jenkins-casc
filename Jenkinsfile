@@ -6,9 +6,10 @@ node {
 
     try {
         stage('Determine Jenkinsfile to build') {
-            load ".tools/jenkins/jenkins-ci.groovy"
             def changedFiles = sh(returnStdout: true, script: 'git diff --name-only HEAD^^')
-            def changed = findChangedFiles(changedFiles);
+            def ci = load "${pwd}/.tools/jenkins/jenkins-ci.groovy"
+
+            def changed = ci.findChangedPaths(changedFiles);
             println changed
         }
         currentBuild.result = 'SUCCESS'
