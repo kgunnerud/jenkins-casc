@@ -10,10 +10,10 @@ static void main(String[] args) {
 static List<ChangedPath> findChangedPaths(String gitChanges) {
     def uniques = new HashSet();
     return (gitChanges.split("\n") as List).stream()
-            .map(e -> toChangedPath(e))
-            .filter(Objects::nonNull)
-            .filter(e -> !uniques.contains(e.name))
-            .peek(e -> uniques.add(e.name))
+            .map{e -> toChangedPath(e)}
+            .filter{e -> e != null}
+            .filter{e -> !uniques.contains(e.name)}
+            .peek{e -> uniques.add(e.name)}
             .collect(Collectors.toList())
 }
 
