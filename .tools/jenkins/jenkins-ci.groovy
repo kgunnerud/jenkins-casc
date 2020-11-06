@@ -7,6 +7,7 @@ static void main(String[] args) {
     //println changed.stream().map(e -> e.toString()).collect(Collectors.joining("\n"))
 }
 
+@NonCPS
 static List<ChangedPath> findChangedPaths(String gitChanges) {
     def uniques = new HashSet();
     return (gitChanges.split("\n") as List)
@@ -34,6 +35,7 @@ class ChangedPath {
     Type type;
     String path;
 
+    @NonCPS
     String toString() {
         return "ChangedPath: [name: $name, type: $type, path: $path]"
     }
